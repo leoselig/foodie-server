@@ -5,7 +5,7 @@ import {registerResources} from 'restify-resourcify';
 import passport from 'passport';
 import setupResources from './resources/setup';
 
-export default async (sequelize) => {
+export default async ({sequelize, port = 8880} = {}) => {
   const server = restify.createServer();
 
   server.pre(restify.CORS());
@@ -16,11 +16,12 @@ export default async (sequelize) => {
 
   registerResources(server, setupResources(sequelize));
 
-  server.listen(8880, () => {
+  server.listen(port, () => {
     npmlog.info('server', `${server.name} listening at ${server.url}`);
   });
 
   return {
+    port,
     async stop() {
       npmlog.info('server', 'Closing connection...');
       const deferred = defer();

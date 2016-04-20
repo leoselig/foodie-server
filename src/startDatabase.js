@@ -4,14 +4,13 @@ import defineModels from './models';
 
 const DB_NAME = 'foodie';
 
-export default async function() {
-  npmlog.info('db', 'Initializing connection');
+export default async function({username, password, database, host, port}) {
+  npmlog.info('db', `Initializing connection to ${database} at ${host}:${port}`);
 
   const sequelize = new Sequelize(
-    DB_NAME, 'foodie', 'foodie', {
+    database, username, password, {
 
-      host: 'localhost',
-      port: 8881,
+      host, port,
       dialect: 'mysql',
 
       pool: {

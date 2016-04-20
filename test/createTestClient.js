@@ -1,9 +1,9 @@
 import {defer} from 'q';
 import {createJSONClient} from 'restify';
 
-export default function createClient() {
+export default function createClient({port}) {
   const client = createJSONClient({
-    url: 'http://localhost:8880',
+    url: `http://localhost:${port}`,
     connectTimeout: 2000,
     retry: false
   });

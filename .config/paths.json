@@ -1,0 +1,6 @@
+{
+  "deployFiles": [
+    "lib/**/*",
+    "package.json"
+  ]
+}

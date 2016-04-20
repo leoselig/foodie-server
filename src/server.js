@@ -1,5 +1,13 @@
-import Q from 'q';
 import startServer from './startServer';
 import startDatabase from './startDatabase';
+import {database} from './config';
 
-Q(startServer(startDatabase())).done();
+(async () => {
+  try {
+    startServer(await startDatabase(database));
+  } catch (error) {
+    console.error(error);
+    console.error(error.stack);
+    process.exit(1);
+  }
+})();

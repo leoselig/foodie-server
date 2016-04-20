@@ -1,7 +1,7 @@
 import {expect} from 'chai';
 import createTestEnvironment from '../../createTestEnvironment';
 
-describe('/user', () => {
+describe.skip('/user', () => {
 
   let client;
   let tearDown;

@@ -1,10 +1,11 @@
 import {defer} from 'q';
 import startServer from '../src/startServer';
+import findFreePort from './findFreePort';
 
 export default async (sequelize) => {
-  const {stop} = await startServer(sequelize);
+  const port = await findFreePort();
+  
+  const {stop} = await startServer({sequelize, port});
 
-  return {
-    stop
-  };
+  return {stop, port};
 };

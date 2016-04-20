@@ -2,7 +2,7 @@ import {expect} from 'chai';
 import facebookAPI from '../../../src/core/facebookAPI';
 import createTestEnvironment from '../../createTestEnvironment';
 
-describe('/auth', () => {
+describe.skip('/auth', () => {
   let client;
   let tearDown;
   let clearDatabase;
@@ -22,7 +22,7 @@ describe('/auth', () => {
     await tearDown();
   });
 
-  it('responds 405 on GET, PUT, DELETE (only POST is expected)', async () => {
+  it.only('responds 405 on GET, PUT, DELETE (only POST is expected)', async () => {
     const getResponse = await client.get('/auth');
     const putResponse = await client.put('/auth');
     const deleteResponse = await client.del('/auth');
